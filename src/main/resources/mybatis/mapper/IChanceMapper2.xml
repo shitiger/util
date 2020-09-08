@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mybatis.mapper.IChanceMapper2" >
+
+
+  <resultMap  id="chanceDO" type="mybatis.ChanceDO">
+    <!-- WARNING - @mbggenerated -->
+    <result column="user_type" jdbcType="TINYINT" property="userType" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+  </resultMap>
+  <sql id="allColumnSQL">
+    <!-- WARNING - @mbggenerated -->
+    chance_id, user_type, user_id, user_name, user_lock_type, industry, handle_status, source, chance_type,
+    relation_id, options, phone, create_time, create_ymd, create_manager_id, manager_id, 
+    manager_rank, prev_manager_id, requirement, pid, lastest_time, lastest_ymd, spreader_1st_id, 
+    spreader_2nd_id, spread_uuid, item_id, lastest_paid_time, lastest_paid_ymd, agent_id, 
+    chance_type_group, union_cookie, amount, discount_amount, paid_amount, refund_amount, 
+    refund_time, refund_ymd, refund_remark, first_paid_time, first_paid_ymd, is_sys, 
+    sys_level, level, expire_date, expire_time, remark, is_overtime, is_send, is_giveup, 
+    giveup_option, giveup_time, giveup_nums, burned_option, burned_time, is_sea, is_reject, 
+    sea_time, sea_date, follow_time, follow_date, follow_remark, source_channel, ip, 
+    distribute_time, consumer_intention, importance_degree, region_code, region_name, 
+    spreader_phone, contact_type, medium, campaign, close_time, added_attribute, customer_name, 
+    customer_num, customer_type_id, customer_reg_capital, customer_industry_id, customer_date, customer_mold,
+    submit_source, submit_channel, bja_spread_code, enter_dispatchengine, update_time,destroy_num
+  </sql>
+  <select id="getChanceByChanceId"  resultMap="chanceDO">
+    <!-- WARNING - @mbggenerated -->
+    select 
+    <include refid="allColumnSQL" />
+    from #{0}
+  </select>
+  <select id="getChanceByChance3d" resultMap="chanceDO">
+    <!-- WARNING - @mbggenerated -->
+    select
+    <include refid="allColumnSQL" />
+    from mk_chance
+    <where>
+      <if test="userId != 0">
+        chance_id = #{userId}
+      </if>
+    </where>
+  </select>
+</mapper>
